@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Add 404 error page -->
+    <div class="error-404" id="error-404">
+      <div class="weather-icon">🌍</div>
+      <h2>404</h2>
+      <p>Oops! We couldn't find the weather for this city.</p>
+      <p>The city you're looking for might not exist or we're having trouble accessing its weather data.</p>
+      <a href="#" class="back-btn" id="back-to-weather">Back to Weather</a>
+    </div>
+
+    <!-- Main weather content -->
+    <div id="weather-content">
+      <header>
+        <h1>
+          <span>🌤️</span>
+          Weather Now
+        </h1>
+        <div class="search-box">
+          <input type="text" id="city-input" placeholder="Search for a city..." />
+          <button id="search-btn">Search</button>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="today">Today</div>
+        <div class="tab" data-tab="five-day">5-Day Forecast</div>
+      </div>
+
+      <div id="today" class="tab-content active">
+        <div class="location-display" id="location-display">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span id="location-name">Loading...</span>
+        </div>
+        <div class="current-weather">
+          <div class="date" id="current-date"></div>
+          <div class="current-time" id="current-time"></div>
+          <div class="weather-icon" id="current-icon">☁️</div>
+          <div class="weather-desc" id="current-desc">Loading...</div>
+          <div class="temp-main" id="current-temp">--°C</div>
+          <div class="real-feel">Feels like: <span id="current-feel">--°C</span></div>
+        </div>
+        <div class="weather-details">
+          <div>☀️ Sunrise: <span id="sunrise"></span></div>
+          <div>🌙 Sunset: <span id="sunset"></span></div>
+          <div>🕒 Day Length: <span id="day-length"></span></div>
+          <div>💧 Humidity: <span id="humidity"></span></div>
+          <div>💨 Wind: <span id="wind"></span></div>
+          <div>🔍 Visibility: <span id="visibility"></span></div>
+        </div>
+
+        <h2>Hourly Forecast</h2>
+        <div class="hourly-forecast">
+          <div class="hourly-container" id="hourly-forecast">
+            <div class="loading"></div>
+          </div>
+        </div>
+
+        <h2>Nearby Cities</h2>
+        <div class="nearby-cities" id="nearby-cities">
+          <div class="loading"></div>
+        </div>
+
+        <h2>Location Map</h2>
+        <div id="map" style="height: 300px; width: 100%; border-radius: 8px; margin-bottom: 20px;"></div>
+      </div>
+
+      <div id="five-day" class="tab-content">
+        <h2>5-Day Forecast</h2>
+        <div class="five-day-forecast" id="five-day-forecast">
+          <div class="loading"></div>
+        </div>
+        <h3>Hourly Details</h3>
+        <div class="five-day-forecast" id="day-hourly-forecast">
+          <div class="loading"></div>
+        </div>
+      </div>
+
+      <div class="error-message" id="error-message"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
