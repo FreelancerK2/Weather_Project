@@ -10,7 +10,8 @@ $(document).ready(function() {
         const timeString = now.toLocaleTimeString([], { 
             hour: '2-digit', 
             minute: '2-digit',
-            second: '2-digit'
+            second: '2-digit',
+            hour12: true
         });
         $('#current-time').text(timeString);
     }
@@ -193,8 +194,8 @@ $(document).ready(function() {
         $('#current-desc').text(data.weather[0].description);
         $('#current-temp').text(`${Math.round(data.main.temp)}°C`);
         $('#current-feel').text(`${Math.round(data.main.feels_like)}°C`);
-        $('#sunrise').text(sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-        $('#sunset').text(sunset.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+        $('#sunrise').text(sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+        $('#sunset').text(sunset.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
         $('#day-length').text(`${hours}h ${minutes}m`);
         $('#humidity').text(`${data.main.humidity}%`);
         $('#wind').text(`${data.wind.speed} m/s, ${getWindDirection(data.wind.deg)}`);
@@ -218,7 +219,7 @@ $(document).ready(function() {
                 const time = new Date(item.dt * 1000);
                 hourlyContainer.append(`
                     <div class="hourly-item">
-                        <div>${time.toLocaleTimeString([], { hour: '2-digit' })}</div>
+                        <div>${time.toLocaleTimeString([], { hour: '2-digit', hour12: true })}</div>
                         <div class="weather-icon-small">${getWeatherIcon(item.weather[0].icon)}</div>
                         <div>${item.weather[0].description}</div>
                         <div>${Math.round(item.main.temp)}°C</div>
@@ -330,7 +331,7 @@ $(document).ready(function() {
             const time = new Date(item.dt * 1000);
             hourlyContainer.append(`
                 <div class="hourly-item">
-                    <div>${time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                    <div>${time.toLocaleTimeString([], { hour: '2-digit', hour12: true })}</div>
                     <div class="weather-icon-small">${getWeatherIcon(item.weather[0].icon)}</div>
                     <div>${item.weather[0].description}</div>
                     <div>${Math.round(item.main.temp)}°C</div>
